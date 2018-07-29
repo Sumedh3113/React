@@ -6,7 +6,7 @@ const VideoList =(props) => {
 
 const videoItems = props.videos.map((video)=>{
 
-  return <VideoListItem video={video} />
+  return <VideoListItem key={video.etag} video={video} />
 });
 
 return(
