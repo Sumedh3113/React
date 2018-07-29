@@ -6,7 +6,7 @@ import YTSearch from 'youtube-api-search';
 import VideoList from './components/video_list';
 import SearchBar from './components/searchbar';// because we can have many files with same name
 
-const API_Key = "AIzaSyB_S2dwQHC81oMyKhlAunjBF296BxUV4hI";
+const API_Key = "Paste API Key here";//Sensitive info to share on github
 
 //create a new component. should produce html
 
