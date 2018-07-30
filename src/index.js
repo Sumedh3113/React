@@ -5,8 +5,10 @@ import YTSearch from 'youtube-api-search';
 
 import VideoList from './components/video_list';
 import SearchBar from './components/searchbar';// because we can have many files with same name
+import VideoDetail from './components/video_details';
 
 const API_Key = "Paste API Key here";//Sensitive info to share on github
+
 
 //create a new component. should produce html
 
@@ -26,6 +28,7 @@ this.state = {videos:[]}
 this.setState({videos:data});
 });
 same function can be written as*/
+// default search term is surfboards so initially it will display search related to surfboards
 YTSearch({key: API_Key, term:'surfboards'}, (videos) => {
 this.setState({videos});
 });
@@ -35,6 +38,7 @@ render(){
 // these <div> tag is jsx it is subset of javascript which allows us to write html inside javascript
 return ( <div>
  <SearchBar />
+ <VideoDetail videos = {this.state.videos[0]}/>
  <VideoList videos = {this.state.videos}/>
   </div>);
  }
