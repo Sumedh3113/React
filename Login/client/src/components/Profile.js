@@ -27,7 +27,7 @@ class Profile extends Component {
      alert("Encrypted Value: "+ this.state.value1);   
     }
     
-    /*--------------------end here---------------------------------------*/
+    /*--------------------end here----------------------------*/
     
     componentDidMount () {
         const token = localStorage.usertoken
@@ -44,10 +44,10 @@ class Profile extends Component {
         return (
             <div className="container">
                 <div className="jumbotron mt-5">
-                    <div className="col-sm-8 mx-auto">
+                    <div className="col-sm-6 mx-auto">
                         <h1 className="text-center">PROFILE</h1>
                     </div>
-                    <table className="table col-md-6 mx-auto">
+                    <table className="table col-sm-6 mx-auto">
                         <tbody>
                             <tr>
                                 <td>First Name</td>
@@ -68,11 +68,13 @@ class Profile extends Component {
                         </tbody>
                     </table>
                 </div>
-                <div>
-                Encrypt:
-                <input type="text" value={this.state.value} onChange={this.handleChange1}/><br/>
-            <br/><input type="button" value="Encrypt" onClick={this.handleClick}/>
-        </div>
+                
+                <div className="form-group">
+          <label>
+              Encrypt:</label>
+                <input type="text" value={this.state.value} onChange={this.handleChange1} class="form-control"/></div><br/>
+            <br/><input type="button" value="Encrypt" onClick={this.handleClick} class="btn btn-md btn-secondary btn-block active"/>
+        
             </div>
         )
     }
