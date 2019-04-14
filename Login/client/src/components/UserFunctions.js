@@ -24,12 +24,12 @@ export const login = user => {
         })
 }
 
-export const requests = newUser => {
-    return axios.post('requestor/requestor', {
-            name: newUser.name,
-            required_doc: newUser.required_doc,
-            
-        }).then(res => {
-            console.log('Done!')
-        })
-}
+//export const request = newReq => {
+//    return axios.post('users/requestor', {
+//            name: newReq.name,
+//            required_doc: newReq.required_doc
+//            
+//        }).then(res => {
+//            console.log('Done!')
+//        })
+//}
