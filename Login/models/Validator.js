@@ -3,17 +3,18 @@ const Schema = mongoose.Schema
 
 const Valid = new Schema({
     student_id: {
-        type: Number
+        type: String
     },
     status: {
-    type: Boolean
+    type: Boolean,
+        default:false
     },
-    comments: {
-        type: String,
-        default: "NA"
+    date: {
+        type: Date,
+        default: Date.now
     }
 })
 
-module.exports = mongoose.model('Valid', Valid)
+module.exports = Validate = mongoose.model('validates', Valid)
 
 
