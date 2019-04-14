@@ -1,34 +1,45 @@
 import React, { Component } from 'react'
+import { val1 } from './ValidatorFunctions'
 
 class Validator extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value2:'',
-                 value3:''};
+    this.state = { student_id:'',
+                 status:false};
 
-    // this.handleChange1 = this.handleChange1.bind(this);
-    this.handleChange2 = this.handleChange2.bind(this);
-    this.handleChange3 = this.handleChange3.bind(this);
- 
+    
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     
   }
 
-  // handleChange1(event) {
-  //   this.setState({value1: event.target.value });
-  // }
-  handleChange2(event) {
-  this.setState({value2: event.target.value});
+  handleChange (e) {
+  this.setState({student_id: e.target.value,
+                status: true
+                });
   }
-  handleChange3(event) {
-  this.setState({value3: event.target.value});
-  }
-  handleSubmit(event) {
-    // alert('You selected: ' + this.state.value1);
-    alert('Your account: ' + this.state.value2);
-    alert('Student Id: ' + this.state.value3);
+  
     
-    event.preventDefault();
+handleSubmit (e) {
+    e.preventDefault()
+    // alert('You selected: ' + this.state.value1);
+  //  alert('Student Id: ' + this.state.student_id);
+//    alert('Your status: ' + this.state.status);
+    
+    const vals = {
+			
+            student_id:this.state.student_id ,
+			status: this.state.status,
+            
+            
+        }
+
+        val1(vals)
+    
+    
+    
+    
+    
   }
 
   render() {
@@ -42,22 +53,22 @@ class Validator extends React.Component {
         <div className="form-group">  
         <label>
           Account:</label>
-          <input type="text" value={this.state.value} onChange={this.handleChange2} className="form-control" />
+          <input type="text" value={this.state.value}  className="form-control" />
           </div>
           
          
         
-        <input type="button" value="Fetch" className="btn btn-lg btn-secondary btn-block active" />
-        
+        <input type="submit" value="Fetch" className="btn btn-lg btn-secondary btn-block active" />
+        </form>
         <br/>    
         <div className="form-group">   
           <label>
            Student_ID:</label>
-           <input type="number" value={this.state.value} onChange={this.handleChange3} className="form-control" />
+           <input type="text" className="form-control" name="student_id" value={this.state.value} onChange={this.handleChange}  />
           </div>
         
-        <input type="submit" value="Approve" className="btn btn-lg btn-secondary btn-block active" />
-      </form>
+        <input type="button" onClick={this.handleSubmit} value="Approve" className="btn btn-lg btn-secondary btn-block active" />
+      
                 
                 </div>
             </div>
