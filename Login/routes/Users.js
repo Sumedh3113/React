@@ -6,7 +6,8 @@ const bcrypt = require("bcrypt")
 
 const User = require("../models/User")
 
-//const Request = require("../models/Request")
+const Request123 = require("../models/Request")
+
 users.use(cors())
 
 process.env.SECRET_KEY = 'secret'
@@ -90,16 +91,26 @@ users.get('/profile', (req, res) => {
 })
 
 /*------------------New code here---------------------------*/
-users.post('/requestor', (req, res) => {
-    const today = new Date()
-    const reqData = {
-        required_doc: req.body.required_doc,
+users.post('/requestor',function(req,res){
+   //var requests = new Request123();
+    const userData = {
         name: req.body.name,
-        
-//        status:req.body.status,
-//        created: today
+        required_doc: req.body.required_doc
     }
-//Request.create(reqData)
+    Request123.create(userData);
+//    requests.save(function(err, savedProduct){
+//        if(err){
+//            res.status(500).send({error:"Could not save the data"});
+//        }
+//        else{
+//            res.send(savedProduct);
+//        }
+//        
+//    }) 
+
+}); 
+
+
 /*-------------------------Ends here-------------------------*/
 
 
