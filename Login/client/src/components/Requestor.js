@@ -5,7 +5,6 @@ class Requestor extends Component {
   constructor() {
     super();
     this.state = {
-//                name: '',
                   required_doc: '',
                   name:'',
                 student_id:'',
