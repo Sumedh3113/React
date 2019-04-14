@@ -13,20 +13,30 @@ app.use(
     })
 )
 
-const mongoURI = 'mongodb://localhost:27017/mernloginreg'
+const mongoURI = 'mongodb://localhost:27017/mernloginreg';
 
 mongoose.connect(mongoURI, { useNewUrlParser: true }).then(() => console.log("MongoDB connected")).catch(err => console.log(err))
 
 var Users = require('./routes/Users')
-var Requests = require('./models/Request')
+var Requests = require('./routes/Requestors')
+
+//my code
+//var Request123 = require('./models/Requestors')
 
 app.use('/users', Users)
+app.use('/requests',Requests)
+//app.use('/requestors', Users)
 //app.use('/requests',Request)
+/*------------------code inserted here----------------------------------*/
+
+/*-------------------ends here---------------------------------------*/
+
+
+
 
 app.listen(port, () => {
     console.log("Server is running on port: " + port)
 })
-
 
 app.post('/requestor',function(req,res){
    var requests = new Requests();
@@ -43,6 +53,11 @@ app.post('/requestor',function(req,res){
     }) 
 
 }); 
+
+
+
+
+
 
 /*  
 app.post('/validator',function(req,res){
