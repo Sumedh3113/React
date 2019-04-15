@@ -9,9 +9,12 @@ class Profile extends Component {
             last_name: '',
             student_id: '',
             email: '',
-            value1:''
+            value1:'',
+            newVal:[],
+            
         }
         
+                            
         this.handleChange1 = this.handleChange1.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
@@ -38,35 +41,71 @@ class Profile extends Component {
             student_id: decoded.student_id,
             email: decoded.email,
         })
+    
+//ready code just find what is the fucking url for get
+// if fetch do not work import 'whatwg-fetch';
+        
+ fetch('http://localhost:5000/requests/req1')
+       .then((response) => response.json())
+      .then((res) => {
+    //   console.log(res.name);
+        this.setState({
+            newVal: res,
+            });
+       // console.log(this.state.newVal.student_id);
+    })
+        //console.log(this.state.newVal); 
+       // console.log("hi "+ this.state.newVal);
+    
+        
+
     }
 
     render () {
+        var {first_name, last_name,student_id,email,val1,items} = this.state
+        //console.log(items);
         return (
             <div className="container">
                 <div className="jumbotron mt-5">
                     <div className="col-sm-6 mx-auto">
                         <h1 className="text-center">PROFILE</h1>
                     </div>
-                    <table className="table col-sm-6 mx-auto">
-                        <tbody>
-                            <tr>
-                                <td>First Name</td>
-                                <td>{this.state.first_name}</td>
-                            </tr>
-                            <tr>
-                                <td>Last Name</td>
-                                <td>{this.state.last_name}</td>
-                            </tr>
-                            <tr>
-                                <td>Student ID</td>
-                                <td>{this.state.student_id}</td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td>{this.state.email}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    
+                    <div>
+                   
+                        {
+                            
+                        this.state.newVal.map((curr)=> 
+                            
+                            <div>
+                            <span>{curr.student_id} </span>
+                            <span>{curr.name} </span>
+                            <span>{curr.required_doc} </span>
+                                                  
+                            </div>
+                            
+                        )}
+                                                  
+                            
+                            
+                    
+ 
+                        
+                                                        
+                )}
+        
+                             
+                        
+                                                    
+                   
+            </div>
+                    
+                    
+                    
+                   <input type="text" />
+                                <input type="button" value="Send hash" disabled/>         
+                        
+                    
                 </div>
                 
                 <div className="form-group">
