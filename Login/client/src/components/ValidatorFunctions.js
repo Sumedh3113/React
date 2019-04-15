@@ -8,4 +8,4 @@ export const val1 = valReq => {
         }).then(res => {
             console.log('Done!')
         })
-}
+}   
