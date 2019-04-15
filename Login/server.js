@@ -30,9 +30,28 @@ app.use('/validates', Validates)
 //app.use('/requestors', Users)
 //app.use('/requests',Request)
 /*------------------code inserted here----------------------------------*/
+   
+//   mongoURI.collection('requests').find({ field:'student_id' }).toArray((err, data) =>{
+//    if (err) console.log(err)
+//    else{
+//     data.forEach(
+//      (doc) => {
+//       console.log(doc.name);
+//       }
+//     );
+//     
+//    }
+//   });
+
+
+
 
 /*-------------------ends here---------------------------------------*/
 
+//app.get('/requests',function(req,res){
+//        res.send(ingredients);
+//    
+//});
 
 
 
