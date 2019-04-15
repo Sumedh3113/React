@@ -30,5 +30,22 @@ requests.post('/req1', (req, res) => {
 })
 
 /*-------------------------Ends here-------------------------*/
+requests.get("/req1",function(req,res){
+    Request.find({},function(err, reqss){
+        if(err){
+            res.status(500).send("Not able to fectch data");
+            
+        }
+        else{
+            res.send(reqss)
+        }
+        
+    })
+    
+})
+
+
+
+
 
 module.exports = requests
