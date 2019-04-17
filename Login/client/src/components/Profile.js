@@ -10,6 +10,7 @@ class Profile extends Component {
             student_id: '',
             email: '',
             value1:'',
+            button:[],
             newVal:[],
             
         }
@@ -42,24 +43,56 @@ class Profile extends Component {
             email: decoded.email,
         })
     
-//ready code just find what is the fucking url for get
-// if fetch do not work import 'whatwg-fetch';
+        
+ fetch('http://localhost:5000/validates/val1')
+       .then((response) => response.json())
+      .then((res) => {
+        this.setState({
+            button: res,
+            });
+
+     
+     // the button will be active only after all the documents are validated
+     this.state.button.map((curr)=> {
+    
+                      if(parseInt(curr.student_id) === this.state.student_id)
+                        {
+                            document.getElementById("sendhash").disabled = false
+                        }})
+
+     
+     
+    //then closing bracket 
+    })
+     
+        
+        
         
  fetch('http://localhost:5000/requests/req1')
        .then((response) => response.json())
       .then((res) => {
-    //   console.log(res.name);
         this.setState({
             newVal: res,
             });
-       // console.log(this.state.newVal.student_id);
-    })
-        //console.log(this.state.newVal); 
-       // console.log("hi "+ this.state.newVal);
+this.state.newVal.map((curr)=> {
     
-        
+                      if(parseInt(curr.student_id) === this.state.student_id)
+                        {
+                            document.querySelector(".reqDoc").textContent +="" +curr.student_id +" " +curr.name + " "+curr.required_doc+"\n";
+                        }})
 
-    }
+
+    
+    })
+ 
+ }
+ 
+        
+            
+                     
+       
+
+    
 
     render () {
         var {first_name, last_name,student_id,email,val1,items} = this.state
@@ -75,35 +108,34 @@ class Profile extends Component {
                    
                         {
                             
-                        this.state.newVal.map((curr)=> 
+                                    
+                        <table>
+                                <tr class="reqDoc"></tr>
+                            </table> 
                             
-                            <div>
-                            <span>{curr.student_id} </span>
-                            <span>{curr.name} </span>
-                            <span>{curr.required_doc} </span>
-                                                  
-                            </div>
                             
-                        )}
+                            
+                        }   
+                            
+                            
+                        
+                            
+                                       
+                                                   
+                                
+                            
                                                   
                             
                             
                     
- 
-                        
-                                                        
-                )}
-        
-                             
-                        
                                                     
                    
             </div>
                     
-                    
-                    
-                   <input type="text" />
-                                <input type="button" value="Send hash" disabled/>         
+                   
+                   <input type="text" placeholder="Enter Name of receiver" />{"\n"}  
+                   <input type="text" placeholder="Enter the hash" />{"\n"}
+                                <input type="button" id="sendhash" class="btn btn-md btn-secondary active" value="Send hash" disabled/>         
                         
                     
                 </div>
