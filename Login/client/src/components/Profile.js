@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
+import { share1 } from './ShareFunctions'
 
 class Profile extends Component {
     constructor() {
         super()
         this.state = {
-            first_name: '',
-            last_name: '',
+            name: '',
+            hashes: '',
             student_id: '',
             email: '',
             value1:'',
@@ -18,9 +19,14 @@ class Profile extends Component {
                             
         this.handleChange1 = this.handleChange1.bind(this);
         this.handleClick = this.handleClick.bind(this);
-    }
-    
-    /*--------------encrypt code start here---------------------------*/
+        
+        this.onChange = this.onChange.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
+
+
+        }
+
+        /*--------------encrypt code start here---------------------------*/
     handleChange1(event){
         
     this.setState({value1: 'a' + event.target.value + ((event.target.value).charCodeAt(2))*5 });
@@ -28,12 +34,42 @@ class Profile extends Component {
     }
 
     handleClick(event){
-     alert("Encrypted Value: "+ this.state.value1);   
+     alert("Encrypted Value: "+ this.state.value1);  
+    document.getElementById("encrypt").value = "";
     }
     
     /*--------------------end here----------------------------*/
+/*---------Send hash code start here--------------------*/
+    onChange (e) {
+        this.setState({ [e.target.name]: e.target.value,
+                        [e.target.hashes]:e.target.value,
+                      });
+    }
+
+    onSubmit (e) {
+        e.preventDefault()
+	//alert("Hello" + this.state.name);
+      //  alert("Hello" + this.state.hashes);
+
+        const reqs = {
+			
+			name: this.state.name,
+            hashes:this.state.hashes,
+            student_id:this.state.student_id
+            
+        }
+
+        share1(reqs)
+        
+        document.getElementById("recName").value = "";
+        document.getElementById("hash").value = "";
+    }
+
     
-    componentDidMount () {
+    
+/*---------------ends here------------------------*/
+
+componentDidMount () {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
         this.setState({
@@ -43,7 +79,8 @@ class Profile extends Component {
             email: decoded.email,
         })
     
-        
+document.getElementById("sendhash").disabled = true
+    
  fetch('http://localhost:5000/validates/val1')
        .then((response) => response.json())
       .then((res) => {
@@ -80,18 +117,11 @@ this.state.newVal.map((curr)=> {
                         {
                             document.querySelector(".reqDoc").textContent +="" +curr.student_id +" " +curr.name + " "+curr.required_doc+"\n";
                         }})
-
-
     
     })
  
  }
  
-        
-            
-                     
-       
-
     
 
     render () {
@@ -107,35 +137,18 @@ this.state.newVal.map((curr)=> {
                     <div>
                    
                         {
-                            
                                     
                         <table>
                                 <tr class="reqDoc"></tr>
                             </table> 
                             
-                            
-                            
                         }   
-                            
-                            
-                        
-                            
-                                       
-                                                   
-                                
-                            
-                                                  
-                            
-                            
-                    
-                                                    
+                                               
+            </div>    
                    
-            </div>
-                    
-                   
-                   <input type="text" placeholder="Enter Name of receiver" />{"\n"}  
-                   <input type="text" placeholder="Enter the hash" />{"\n"}
-                                <input type="button" id="sendhash" class="btn btn-md btn-secondary active" value="Send hash" disabled/>         
+                   <input type="text" placeholder="Enter Name of receiver" id="recName" value={this.state.name} name="name" onChange={this.onChange}/>{"\n"}  
+                   <input type="text" placeholder="Enter the hash" value={this.state.hashes} id="hash" name="hashes" onChange={this.onChange}/>{"\n"}
+                                <input type="button" id="sendhash" className="btn btn-md btn-secondary active" value="Send hash" onClick={this.onSubmit} />         
                         
                     
                 </div>
@@ -143,8 +156,8 @@ this.state.newVal.map((curr)=> {
                 <div className="form-group">
           <label>
               Encrypt:</label>
-                <input type="text" value={this.state.value} onChange={this.handleChange1} class="form-control"/></div><br/>
-            <br/><input type="button" value="Encrypt" onClick={this.handleClick} class="btn btn-md btn-secondary btn-block active"/>
+                <input type="text" value={this.state.value} onChange={this.handleChange1} id="encrypt" class="form-control"/></div><br/>
+            <br/><input type="button" value="Encrypt" onClick={this.handleClick} className="btn btn-md btn-secondary btn-block active"/>
         
             </div>
         )
