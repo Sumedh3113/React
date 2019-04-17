@@ -28,7 +28,7 @@ requests.post('/req1', (req, res) => {
 //    }
 	
 })
-
+/
 /*-------------------------Ends here-------------------------*/
 requests.get("/req1",function(req,res){
     Request.find({},function(err, reqss){
