@@ -31,7 +31,7 @@ handleSubmit (e) {
         }
 
         val1(vals) 
-    document.getElementById("approve").value ="";
+    document.getElementById("approve").value=""
   }
 
   render() {
