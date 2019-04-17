@@ -8,8 +8,11 @@ const Share = new Schema({
     hashes: {
     type: String
     },
+    name:{
+        type: String
+    }
 })
 
-module.exports = mongoose.model('Share', Share)
+module.exports = mongoose.model('shares', Share)
 
 
