@@ -28,5 +28,22 @@ validates.post('/val1', (req, res) => {
 })
 
 /*-------------------------Ends here-------------------------*/
+validates.get("/val1",function(req,res){
+    Validate.find({},function(err, reqss){
+        if(err){
+            res.status(500).send("Not able to fectch data");
+            
+        }
+        else{
+            res.send(reqss)
+        }
+        
+    })
+    
+})
+
+
+
+
 
 module.exports = validates
