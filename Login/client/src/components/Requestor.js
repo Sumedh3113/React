@@ -8,7 +8,8 @@ class Requestor extends Component {
                   required_doc: '',
                   name:'',
                 student_id:'',
-                    decrypt:''
+                    decrypt:'',
+                    responses:[]
                  };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,8 +26,10 @@ class Requestor extends Component {
 
     /*--change this function if want to change decrypt value--*/
     handleClick(e){
-    //alert("Decrypted Value: " + (this.state.decrypt).slice(1,-3))
-    document.querySelector(".test").textContent = "Decrypted Value: " + (this.state.decrypt).slice(1,-3)
+    alert("Decrypted Value: " + (this.state.decrypt).slice(1,-3))
+    //document.querySelector(".test").textContent = "Decrypted Value: " + (this.state.decrypt).slice(1,-3)
+    //clearing the fields after click
+    document.getElementById("DecryptVal").value="";
         
     }
 	 
@@ -51,8 +54,36 @@ onChange (e) {
         }
 
         req1(reqs)
+        document.getElementById("shareVal1").value="";
+        document.getElementById("shareVal2").value="";
+        document.getElementById("shareVal3").value="";
     }
     
+componentDidMount() {
+        
+ fetch('http://localhost:5000/shares/share1')
+       .then((response) => response.json())
+      .then((res) => {
+        this.setState({
+            responses: res,
+            });
+this.state.responses.map((curr)=> {
+    
+                      //if(curr.name === this.state.name)
+                        //{
+                    document.querySelector(".reqDoc").textContent += curr.student_id +"  "+curr.hashes+"\n";
+                        //}
+                    
+                         })
+
+
+    
+    })
+ 
+ }
+
+    
+
 
   render() {
     return (
@@ -62,35 +93,28 @@ onChange (e) {
       <form onSubmit={this.onSubmit}><br/>
         <div className="form-group">
         <label>
-          Pick Required Documents: </label>
-          <select className="form-control"
- value={this.state.value} onChange={this.handleChange1}>
-            <option value=""></option>
-            <option value="i20">I-20</option>
-            <option value="transcript">Transcript</option>
-            <option value="passport">Passport</option>
-            <option value="i94">I-94</option>
-          </select>
+          Choose Required Documents: </label>{"\n"}
+            <span> I20 , Passport , Visa , I94 </span>
        
         </div>
           
           <div className="form-group">
         <label htmlFor="email">Document List:</label>
         <input type="text" className="form-control" 
-        placeholder="Enter document names" name="required_doc" value={this.state.required_doc} onChange={this.onChange} />
+        placeholder="Enter document names" name="required_doc" id="shareVal1" value={this.state.required_doc} onChange={this.onChange} />
                 </div>
           
         <div className="form-group">
           <label>
           Name:</label>
-          <input type="text" placeholder="Enter your name" name="name" className="form-control" value={this.state.name} onChange={this.onChange} />
+          <input type="text" placeholder="Enter your name" name="name" id="shareVal2" className="form-control" value={this.state.name} onChange={this.onChange} />
         
             </div>
           
         <div className="form-group">
           <label>
           Student_ID:</label>
-          <input type="text" placeholder="Enter Users ID" name="student_id" className="form-control" value={this.state.student_id} onChange={this.onChange} />
+          <input type="text" placeholder="Enter Users ID" name="student_id"  id="shareVal3" className="form-control" value={this.state.student_id} onChange={this.onChange} />
         
             </div>
 
@@ -101,13 +125,16 @@ onChange (e) {
         <div className="form-group">
           <label>        
               Decrypt :</label> 
-          <input type="text"  placeholder="Enter hash to decrypt" className="form-control" name="decypt" value={this.state.decrypt} onChange={this.handleChange} />
+          <input type="text"  placeholder="Enter hash to decrypt"  id="DecryptVal" className="form-control" name="decypt" value={this.state.decrypt} onChange={this.handleChange} />
         </div>
 
             
         <input type="button" onClick={this.handleClick} value="Decrypt" className="btn btn-lg btn-secondary btn-block active"/>
                 <br/>
             <div class="test">
+                
+                </div>
+            <div class="reqDoc">
                 
                 </div>
                 
