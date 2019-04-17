@@ -20,38 +20,13 @@ mongoose.connect(mongoURI, { useNewUrlParser: true }).then(() => console.log("Mo
 var Users = require('./routes/Users')
 var Requests = require('./routes/Requestors')
 var Validates = require('./routes/Validators')
+var Shares = require('./routes/Shares')
 
-//my code
-//var Request123 = require('./models/Requestors')
 
 app.use('/users', Users)
 app.use('/requests',Requests)
 app.use('/validates', Validates)
-//app.use('/requestors', Users)
-//app.use('/requests',Request)
-/*------------------code inserted here----------------------------------*/
-   
-//   mongoURI.collection('requests').find({ field:'student_id' }).toArray((err, data) =>{
-//    if (err) console.log(err)
-//    else{
-//     data.forEach(
-//      (doc) => {
-//       console.log(doc.name);
-//       }
-//     );
-//     
-//    }
-//   });
-
-
-
-
-/*-------------------ends here---------------------------------------*/
-
-//app.get('/requests',function(req,res){
-//        res.send(ingredients);
-//    
-//});
+app.use('/shares', Shares)
 
 
 
@@ -59,57 +34,3 @@ app.listen(port, () => {
     console.log("Server is running on port: " + port)
 })
 
-//app.post('/requestor',function(req,res){
-//   var requests = new Requests();
-//    requests.name = req.body.name;
-//    requests.required_doc = req.body.required_doc;
-//    requests.save(function(err, savedProduct){
-//        if(err){
-//            res.status(500).send({error:"Could not save the data"});
-//        }
-//        else{
-//            res.send(savedProduct);
-//        }
-//        
-//    }) 
-//
-//}); 
-
-
-
-
-
-
-/*  
-app.post('/validator',function(req,res){
-   var requests = new Requests();
-    requests.name = req.body.name;
-    requests.required_doc = req.body.required_doc;
-    requests.save(function(err, savedProduct){
-        if(err){
-            res.status(500).send({error:"Could not save the data"});
-        }
-        else{
-            res.send(savedProduct);
-        }
-        
-    });  
-    
-app.post('/share',function(req,res){
-   var requests = new Requests();
-    requests.name = req.body.name;
-    requests.required_doc = req.body.required_doc;
-    requests.save(function(err, savedProduct){
-        if(err){
-            res.status(500).send({error:"Could not save the data"});
-        }
-        else{
-            res.send(savedProduct);
-        }
-        
-    });   
-
-
-});
-    
-*/    
