@@ -115,7 +115,8 @@ this.state.newVal.map((curr)=> {
     
                       if(parseInt(curr.student_id) === this.state.student_id)
                         {
-                            document.querySelector(".reqDoc").textContent +="" +curr.student_id +" " +curr.name + " "+curr.required_doc+"\n";
+                           // document.querySelector(".reqDoc").textContent +="" +curr.student_id +" " +curr.name + " "+curr.required_doc+"\n";
+                            document.querySelector(".reqDoc").textContent +=" Requestor {"+ curr.name +"}" + " Required Documents {"+ curr.required_doc+"}" ;
                         }})
     
     })
@@ -129,38 +130,46 @@ this.state.newVal.map((curr)=> {
         //console.log(items);
         return (
             <div className="container">
-                <div className="jumbotron mt-5">
-                    <div className="col-sm-6 mx-auto">
-                        <h1 className="text-center">PROFILE</h1>
-                    </div>
+                <div className="row" >
+                
+                    <div className="col-sm-7 mt-5 mx-auto">
+                        
                     
-                    <div>
+                    
+                      
                    
+                   <input type="text" placeholder="Enter Name of receiver" id="recName" value={this.state.name} className="form-control" name="name" onChange={this.onChange}/>{"\n"}  <br/>
+                   <input type="text" placeholder="Enter the hash" value={this.state.hashes} className="form-control" id="hash" name="hashes" onChange={this.onChange}/>{"\n"}<br/>
+                                <input type="button" id="sendhash" className="btn btn-md btn-secondary btn-block active" value="Send hash" onClick={this.onSubmit} />    
+                        <br/>
+                    <label>
+              Encrypt:</label>
+                <input type="text" value={this.state.value} onChange={this.handleChange1} id="encrypt" class="form-control"/>
+            <br/><input type="button" value="Encrypt" onClick={this.handleClick} className="btn btn-md btn-secondary btn-block active"/>
+        
+                    
+                    </div>    
+                  
+                <div className="col-sm-5 mt-4 mx-auto">
+                   <h3 className="text-center">PROFILE</h3>
                         {
                                     
                         <table>
-                                <tr class="reqDoc"></tr>
+                                <tr class="reqDoc">
+                                    <td></td>
+                                </tr>
                             </table> 
                             
                         }   
-                                               
-            </div>    
-                   
-                   <input type="text" placeholder="Enter Name of receiver" id="recName" value={this.state.name} name="name" onChange={this.onChange}/>{"\n"}  
-                   <input type="text" placeholder="Enter the hash" value={this.state.hashes} id="hash" name="hashes" onChange={this.onChange}/>{"\n"}
-                                <input type="button" id="sendhash" className="btn btn-md btn-secondary active" value="Send hash" onClick={this.onSubmit} />         
-                        
+                    
+                    
+                    </div>
+                    
+                </div>
                     
                 </div>
                 
-                <div className="form-group">
-          <label>
-              Encrypt:</label>
-                <input type="text" value={this.state.value} onChange={this.handleChange1} id="encrypt" class="form-control"/></div><br/>
-            <br/><input type="button" value="Encrypt" onClick={this.handleClick} className="btn btn-md btn-secondary btn-block active"/>
-        
-            </div>
-        )
+                        )
     }
 }
 
