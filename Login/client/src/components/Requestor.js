@@ -59,6 +59,7 @@ onChange (e) {
         document.getElementById("shareVal3").value="";
     }
     
+    
 componentDidMount() {
         
  fetch('http://localhost:5000/shares/share1')
@@ -71,7 +72,8 @@ this.state.responses.map((curr)=> {
     
                       //if(curr.name === this.state.name)
                         //{
-                    document.querySelector(".reqDoc").textContent += curr.student_id +"  "+curr.hashes+"\n";
+                    document.querySelector(".reqDoc").textContent +=" Student_id {"+ curr.student_id +"}" + " Hash {"+ curr.hashes+"}" ;
+                    //document.querySelector(".reqDoc2").textContent +=" Hash {"+ curr.hashes+"}";
                         //}
                     
                          })
@@ -88,12 +90,12 @@ this.state.responses.map((curr)=> {
   render() {
     return (
     <div className="container">
-        <div className="row">
-            <div className="col-md-6 mt-5 mx-auto">
+        <div className="row" >
+            <div className="col-sm-4 mt-5 mx-auto styleme" >
       <form onSubmit={this.onSubmit}><br/>
         <div className="form-group">
         <label>
-          Choose Required Documents: </label>{"\n"}
+          Choose Documents: </label>{"\n"}
             <span> I20 , Passport , Visa , I94 </span>
        
         </div>
@@ -127,20 +129,37 @@ this.state.responses.map((curr)=> {
               Decrypt :</label> 
           <input type="text"  placeholder="Enter hash to decrypt"  id="DecryptVal" className="form-control" name="decypt" value={this.state.decrypt} onChange={this.handleChange} />
         </div>
-
+         
             
+        
+        
         <input type="button" onClick={this.handleClick} value="Decrypt" className="btn btn-lg btn-secondary btn-block active"/>
+        
                 <br/>
-            <div class="test">
-                
                 </div>
-            <div class="reqDoc">
+            
+               
+            
+        
+            <div  className="col-sm-8 mt-4 mx-auto" >
+            
                 
-                </div>
+                <table>
                 
+            <br/><br/>
+                <h3>Received Documents</h3>
+            <tr class="reqDoc">
+                <td ></td>
+                </tr>
+    
+                
+        
+            </table>
+            
+            </div>
+            
+            </div>
         </div>
-            </div>
-            </div>
 
     );
   }
