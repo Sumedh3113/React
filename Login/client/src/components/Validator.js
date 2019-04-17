@@ -22,24 +22,16 @@ class Validator extends React.Component {
     
 handleSubmit (e) {
     e.preventDefault()
-    // alert('You selected: ' + this.state.value1);
-  //  alert('Student Id: ' + this.state.student_id);
-//    alert('Your status: ' + this.state.status);
     
     const vals = {
 			
             student_id:this.state.student_id ,
 			status: this.state.status,
             
-            
         }
 
-        val1(vals)
-    
-    
-    
-    
-    
+        val1(vals) 
+    document.getElementById("approve").value ="";
   }
 
   render() {
@@ -64,7 +56,7 @@ handleSubmit (e) {
         <div className="form-group">   
           <label>
            Student_ID:</label>
-           <input type="text" className="form-control" name="student_id" value={this.state.value} onChange={this.handleChange}  />
+           <input type="text" className="form-control" id="approve" name="student_id" value={this.state.value} onChange={this.handleChange}  />
           </div>
         
         <input type="button" onClick={this.handleSubmit} value="Approve" className="btn btn-lg btn-secondary btn-block active" />
