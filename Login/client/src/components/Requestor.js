@@ -9,13 +9,14 @@ class Requestor extends Component {
                   name:'',
                 student_id:'',
                     decrypt:'',
-                    responses:[]
+                    responses:[],
+                verify_id:''
                  };
 
     this.handleChange = this.handleChange.bind(this);
     this.onChange = this.onChange.bind(this)
 	this.onSubmit = this.onSubmit.bind(this)
-     
+     this.verify = this.verify.bind(this);
     this.handleClick = this.handleClick.bind(this);
     
   }
@@ -33,13 +34,15 @@ class Requestor extends Component {
         
     }
 	 
+
     
     
 onChange (e) {
         this.setState({ [e.target.name]: e.target.value,
                         [e.target.required_doc]:e.target.value,
-                      [e.target.student_id]:e.target.value})
-    }
+                      [e.target.student_id]:e.target.value,
+                     [e.target.student_id]:e.target.value  })
+                }
 
     onSubmit (e) {
         e.preventDefault()
@@ -83,6 +86,28 @@ this.state.responses.map((curr)=> {
     })
  
  }
+    
+verify(e){
+    document.querySelector(".reqDoc").textContent =" " ;
+//var http = require('http');
+//    
+//var MongoClient = require('mongodb').MongoClient;
+//var url = "mongodb://localhost:27017/";
+//
+//MongoClient.connect(url, function(err, db) {
+//  if (err) throw err;
+//  var dbo = db.db("mernloginreg");
+//  var myquery = { student_id: this.state.verify_id };
+//  dbo.collection("shares").deleteOne(myquery, function(err, obj) {
+//    if (err) throw err;
+//    console.log("1 document deleted");
+//    db.close();
+//  });
+//});
+//   
+    
+    
+}
 
     
 
@@ -154,9 +179,10 @@ this.state.responses.map((curr)=> {
     
                 
         
-            </table>
-            
-            </div>
+            </table><br/><br/>
+                
+         <input type="button"  value="Verify" onClick={this.verify} className="btn btn-lg btn-secondary  active"/>
+            </div> 
             
             </div>
         </div>
