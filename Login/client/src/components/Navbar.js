@@ -18,12 +18,12 @@ class Navbar extends Component {
                 </li>
                 <li className="nav-item">
                     <Link to="/validator" className="nav-link">
-                      Validator Login
+                      Validator Page
                     </Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/requestor" className="nav-link">
-                      Requester Login
+                      Requester Page
                     </Link>
                 </li>
                 <li className="nav-item">
