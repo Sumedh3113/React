@@ -26,7 +26,7 @@ class Profile extends Component {
 
         }
 
-        /*--------------encrypt code start here---------------------------*/
+    /*-------------------encrypt code start here---------------------------*/
     handleChange1(event){
         
     this.setState({value1: 'a' + event.target.value + ((event.target.value).charCodeAt(2))*5 });
